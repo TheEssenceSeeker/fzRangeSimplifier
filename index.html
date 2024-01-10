@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Round Numbers</title>
+
+    <style>
+      body {
+        display: flex;
+        height: 100vh;
+        margin: 0;
+        background-color: #f2f2f2;
+        font-family: Arial, sans-serif;
+      }
+
+      #inputContainer,
+      #outputContainer {
+        flex: 1;
+        padding: 20px;
+      }
+
+      textarea {
+        width: 100%;
+        height: 100%;
+        resize: none;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        background-color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="inputContainer">
+      <label for="inputString">Введите строку:</label>
+      <textarea id="inputString" oninput="roundAndDisplayResult()">
+[87.8]QdJd[/87.8],[85.6]QsJs[/85.6],[85.2]QsQd[/85.2],[84.5]QhJh[/84.5],[83.4]QdQh,QsQh[/83.4],[79.2]JsJd[/79.2],[78.9]Kd8d[/78.9],[78.2]JdJh[/78.2],[76.9]JsJh[/76.9],[76.5]Kh8h[/76.5],[75.4]Jd9d[/75.4],[73.0]AcTh[/73.0],[72.0]AcTd[/72.0],[71.7]9d8d[/71.7],[71.3]Ks8s[/71.3],[70.7]QdTd[/70.7],[70.6]QsQc,Jh9h[/70.6],[70.4]QdQc[/70.4],[70.3]Js6s[/70.3],[70.2]As6d[/70.2],[70.0]Jd8d[/70.0],[69.5]9s8s[/69.5],[69.4]Jh8h[/69.4],[69.3]JsJc[/69.3],[69.2]JdJc[/69.2],[69.0]Jd6d[/69.0],[68.7]Ac6d[/68.7],[68.5]QcQh[/68.5],[68.4]Js8s,2s2h[/68.4],[68.2]QhTh[/68.2],[67.9]JcJh[/67.9],[67.8]AhTd,Ad6s[/67.8],[67.7]JdTd,Js9s[/67.7],[66.9]KsKd[/66.9],[66.8]Ad6c[/66.8],[66.6]9h8h[/66.6],[66.4]KdKh[/66.4],[66.3]AcTc,AdTh[/66.3],[66.0]Qs7s[/66.0],[65.8]KsKh[/65.8],[65.0]AsTd,2c2h[/65.0],[64.9]JhTh,Js7s[/64.9],[64.7]Qh7h[/64.7],[64.0]Jh7h,AdTc,Td9d[/64.0],[63.6]As6c[/63.6],[63.4]Jd7d[/63.4],[63.3]Qs9s[/63.3],[63.1]Ac6s[/63.1],[63.0]Qd7d,2s2c[/63.0],[62.8]AhTc[/62.8],[62.6]AsTh[/62.6],[62.2]Ac6c,Qh9h,Td8d[/62.2],[62.1]KsQs,KsQh[/62.1],[62.0]Qd9d[/62.0],[61.9]Qs8s[/61.9],[61.8]KhQs[/61.8],[61.7]Ah7c[/61.7],[60.8]KsQd,Th8h[/60.8],[60.5]KTs,As7c,6s6c[/60.5],[60.4]AsTc[/60.4],[60.3]Qd8d[/60.3],[60.1]KhQh[/60.1],[59.6]KdQs,Jh5h[/59.6],[59.5]Ad7c[/59.5],[59.4]Th9h[/59.4],[59.3]Ah6d[/59.3],[59.0]Qc9d[/59.0],[58.8]Qh8h[/58.8],[58.3]Jd5d[/58.3],[58.0]Qc9s[/58.0],[57.9]Qs6s[/57.9],[57.7]KdQd[/57.7],[57.6]6s6d[/57.6],[57.4]Js5s[/57.4],[57.3]QcJc[/57.3],[56.6]Qc9h,Ah6s[/56.6],[56.5]KhJs[/56.5],[55.9]KhQd[/55.9],[55.8]KdQh,5d4d,5s4s[/55.8],[55.7]KsJd[/55.7],[55.6]5h4h[/55.6],[55.4]As4c[/55.4],[54.9]KsJh,Ah6c[/54.9],[54.8]9c8c[/54.8],[54.7]KdJs,KsTc,Td6d[/54.7],[54.6]6d6c[/54.6],[54.5]Jc6c[/54.5],[54.3]Qs9d[/54.3],[54.2]Ah4c[/54.2],[53.8]Tc6c,Ad4c[/53.8],[53.7]Tc9c[/53.7],[53.5]Jc8c[/53.5],[52.8]Ac2c[/52.8],[52.6]Qs9h,6d5d[/52.6],[52.5]KhJd[/52.5],[52.3]Jc9h[/52.3],[52.2]Jc9s[/52.2],[52.1]KsTh[/52.1],[52.0]KsQc[/52.0],[51.9]Qd9s[/51.9],[51.8]Qd6d[/51.8],[51.7]6s5s[/51.7],[51.4]Jc9d[/51.4],[51.1]KdTc,Qh9d,5c4c[/51.1],[51.0]Qd9h[/51.0],[50.7]KsJc,QsTc,As5c[/50.7],[50.5]KdJh[/50.5],[50.3]Qh9s[/50.3],[50.2]KsTd[/50.2],[49.7]KhTc[/49.7],[49.6]Ad5c[/49.6],[48.8]8d7d,8s7s[/48.8],[48.7]Qs5s[/48.7],[48.5]Jh4h[/48.5],[48.3]QsJc,QsJd[/48.3],[48.2]9s7s[/48.2],[48.0]QsJh,KdTh[/48.0],[47.9]8h7h,6d4d[/47.9],[47.8]6s4s[/47.8],[47.6]Ah5c[/47.6],[47.5]8s8c[/47.5],[47.4]9d7d[/47.4],[47.3]Jd4d[/47.3],[47.2]QhJs[/47.2],[47.1]Tc9s[/47.1],[46.9]KhQc,Js4s[/46.9],[46.7]Qh5h[/46.7],[46.6]Js9h[/46.6],[46.5]QdJs[/46.5],[46.3]KdQc,KhJc[/46.3],[46.1]KhTd[/46.1],[46.0]Qc8c[/46.0],[45.8]JsTc,Js9d[/45.8],[45.7]Js9c[/45.7],[45.5]QhJd[/45.5],[45.4]8d8c[/45.4],[45.3]Qc6c[/45.3],[45.2]Qd5d,Qh3h[/45.2],[45.1]Ks6s[/45.1],[45.0]QdJh[/45.0],[44.8]AdTd,Jh9s[/44.8],[44.7]9h7h[/44.7],[44.2]AhTh,QsTh[/44.2],[44.0]As4s[/44.0],[43.9]QhJc,Kd9s,Jd9s[/43.9],[43.7]As3s,Qs3s,QcJh,Qs9c[/43.7],[43.6]Jc9c[/43.6],[43.5]QcJs,Jd9h[/43.5],[43.4]Qd3d,QsTd[/43.4],[43.3]Ks9d[/43.3],[43.2]KdJc[/43.2],[43.1]Kd7d[/43.1],[43.0]7d7c[/43.0],[42.9]QcJd,QdJc,Jh9d[/42.9],[42.6]QhTc[/42.6],[42.5]QdTc,Kh9s[/42.5],[42.3]6c5c[/42.3],[42.2]Ks7s[/42.2],[42.1]AsKs,Ks9h[/42.1],[42.0]Jh9c[/42.0],[41.9]AdKd,8s8d[/41.9],[41.8]Kh9d[/41.8],[41.7]8c8h[/41.7],[41.6]Th9c[/41.6],[41.5]Kd9h,Jd9c[/41.5],[41.4]KsJs,Kd6d[/41.4],[41.2]Ah4h,Qh9c[/41.2],[41.1]Ah3h,Ks2s[/41.1],[41.0]7s7c[/41.0],[40.9]Qd9c,Ah7d[/40.9],[40.8]Ah2h[/40.8],[40.7]Ad3d[/40.7],[40.5]Qc9c,Th9s,As7d[/40.5],[40.3]Kh7h,Td9c,Ah7s,Ad7h[/40.3],[40.2]7c7h[/40.2],[40.1]AhKh,KhJh[/40.1],[40.0]Kh2h[/40.0],[39.9]As2s,Tc8c[/39.9],[39.8]Ad4d[/39.8],[39.6]Ks5s,As7h[/39.6],[39.2]Kd9d[/39.2],[38.8]Qs4s,JcTc[/38.8],[38.7]Tc9h,8c7c[/38.7],[38.5]KdJd[/38.5],[38.4]Tc9d[/38.4],[38.2]Kd3d[/38.2],[38.0]8s8h[/38.0],[37.8]Ad7s,6c4c[/37.8],[37.4]Ks9s[/37.4],[37.3]Td9s[/37.3],[36.9]AsAc[/36.9],[36.8]Ks4s,Qh4h,8d8h[/36.8],[36.7]As7s[/36.7],[36.6]AdAc,As5s,Kh9h,Ks3s[/36.6],[36.3]AcAh[/36.3],[36.0]QcTc[/36.0],[35.3]Ad7d[/35.3],[35.2]JsTh[/35.2],[35.0]As6s,JhTc[/35.0],[34.9]Ah7h,Kd5d,JsTd[/34.9],[34.6]Ac3c,Kh3h,QdTh[/34.6],[34.4]Qd4d[/34.4],[34.3]Kh5h[/34.3],[33.6]QhTd,JdTc[/33.6],[33.4]8s5s[/33.4],[33.3]AsAd,Ah5h[/33.3],[33.1]TcTh[/33.1],[32.9]Kh4h,Tc8s[/32.9],[32.8]Ad5d[/32.8],[32.6]AdAh[/32.6],[32.5]Ad4h,Ad4s[/32.5],[32.3]Th9d[/32.3],[32.1]AsAh,TdTh,Ks8c[/32.1],[32.0]Kd4d,As4d[/32.0],[31.9]As4h[/31.9],[31.6]Ah4d,Ah4s[/31.6],[31.5]Qs2s[/31.5],[31.0]Qh2h,QcTh[/31.0],[30.7]Th7h[/30.7],[30.6]8s6s[/30.6],[30.5]Td7d[/30.5],[30.1]7s7d[/30.1],[30.0]Ad5h[/30.0],[29.8]Ad6d,7d7h[/29.8],[29.6]9c7c[/29.6],[29.5]Td9h[/29.5],[29.3]JcTh,8h5h,As5h[/29.3],[29.2]QcTd[/29.2],[28.8]AcQs[/28.8],[28.3]AcKs,7d6d[/28.3],[28.2]As3c[/28.2],[28.0]5d5c,Ad3c[/28.0],[27.9]8d5d[/27.9],[27.6]Ad3s[/27.6],[27.4]JcTd[/27.4],[27.3]Ah3c[/27.3],[27.1]As5d[/27.1],[26.8]Ah8d,Kh8c[/26.8],[26.4]Kd8c[/26.4],[26.3]Ah8s,7s7h[/26.3],[26.2]5c5h,Ah3s,Ac3s[/26.2],[25.8]AcJs,TdTc,Ad3h,As3h[/25.8],[25.5]9s6s[/25.5],[25.3]AcKd[/25.3],[25.2]As3d[/25.2],[24.9]Qc7c,Ad8s[/24.9],[24.8]Ah5d[/24.8],[24.6]Ad5s[/24.6],[24.4]AhQs,Ah3d[/24.4],[24.2]AcKh[/24.2],[24.1]Jc5c[/24.1],[24.0]AdQs[/24.0],[23.8]7s6s,Ac3h[/23.8],[23.7]As8d[/23.7],[22.6]AcJh,8d6d[/22.6],[22.4]Ks8d[/22.4],[22.3]AsQd,As8h,Ac3d[/22.3],[22.2]JhTd,Ks9c[/22.2],[22.1]AdKs,Ks8h,Ac4h,4d4c[/22.1],[22.0]5s5c[/22.0],[21.9]Qc5c,Jc7c[/21.9],[21.8]Ac4d[/21.8],[21.7]AcQc,Ad8h[/21.7],[21.6]JdTh[/21.6],[21.5]9d6d,Ah5s[/21.5],[21.4]AhKs[/21.4],[21.3]AsQh,Kh9c,9s9c,Kd8s[/21.3],[21.2]Ah8c[/21.2],[21.0]5d5h[/21.0],[20.9]AcQd[/20.9],[20.8]Kd9c[/20.8],[20.4]9c8s[/20.4],[19.7]AsKd,Th8s,8c5c[/19.7],[19.5]9s9d,Kh8s,9c8h[/19.5],[19.4]AhQh[/19.4],[19.3]AsKh,Ac4s[/19.3],[19.2]AsQs,9s8c[/19.2],[18.7]9c8d[/18.7],[18.5]Jc4c[/18.5],[18.4]AcQh[/18.4],[18.3]9d9c,4c4h[/18.3],[18.0]9h8c[/18.0],[17.9]AhQd,Kh8d[/17.9],[17.6]AcJd,As8c,9d8c,Ac7h[/17.6],[17.5]9s9h[/17.5],[17.3]AhKd,AdKh,Kd8h[/17.3],[16.9]Ac4c[/16.9],[16.8]AdQh[/16.8],[16.5]AsQc[/16.5],[16.4]7h5h[/16.4],[16.2]9d9h,Tc8d[/16.2],[16.1]9c9h[/16.1],[15.7]5s5d[/15.7],[15.5]AdQd,Ad8c[/15.5],[15.4]Td8c,4s4c[/15.4],[15.2]Qc2c[/15.2],[14.9]9s8h[/14.9],[14.7]Qc4c,Ac7d,7c5c[/14.7],[14.3]9h8s[/14.3],[14.2]9d8h[/14.2],[14.0]5s5h[/14.0],[13.8]7s5s[/13.8],[13.7]9s8d[/13.7],[13.6]5h3h[/13.6],[13.5]5s3s[/13.5],[13.4]4d4h[/13.4],[13.3]9d8s[/13.3],[13.2]Td8s,9h8d[/13.2],[13.1]Th8c[/13.1],[13.0]AdQc,Tc8h,5d3d[/13.0],[12.3]Qc3c[/12.3],[11.5]AsJh,5c3c[/11.5],[11.4]AhQc[/11.4],[11.2]Ac7s,4s4d[/11.2],[10.9]AcJc[/10.9],[10.0]AhJs[/10.0],[9.84]7d5d[/9.84],[9.77]Js8c[/9.77],[9.22]As8s[/9.22],[8.75]Jd8c[/8.75],[8.63]Ac8s[/8.63],[8.62]Ac5h[/8.62],[8.60]9c6c[/8.60],[8.56]Jh8c[/8.56],[8.19]8c6c[/8.19],[8.17]AsJd[/8.17],[7.83]4s4h[/7.83],[7.56]AdJs[/7.56],[7.31]Ac8d[/7.31],[7.26]Jc8s[/7.26],[6.34]Jc8d[/6.34],[6.29]Tc7c[/6.29],[6.26]3s3d[/6.26],[6.21]Jc8h[/6.21],[5.42]Ac5d[/5.42],[5.35]AdJh[/5.35],[5.09]Ac8h[/5.09],[3.96]AsJc[/3.96],[3.59]Jd8s[/3.59],[3.45]Jh8s[/3.45],[3.42]AhJd[/3.42],[3.26]Td8h[/3.26],[3.20]Th8d[/3.20],[3.12]3d3c[/3.12],[3.10]Js8d[/3.10],[2.89]Js8h[/2.89],[2.27]AdJc[/2.27],[2.02]Jh8d[/2.02],[1.83]AhJc[/1.83],[1.64]Jd8h[/1.64],[1.52]3d3h[/1.52],[1.11]Ad8d[/1.11],[0.30]Ac8c[/0.30],[0.23]3s3c[/0.23],[0.17]Ac5s[/0.17],[0.11]Ac7c[/0.11],[0.07]3s3h[/0.07],[0.03]Ah8h[/0.03]</textarea
+      >
+    </div>
+
+    <div id="outputContainer">
+      <label for="outputResult">Результат:</label>
+      <textarea id="outputResult" readonly></textarea>
+    </div>
+
+    <script>
+      function roundToNearest(value, numbers) {
+        return numbers.reduce(function (prev, curr) {
+          return Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev;
+        });
+      }
+
+      function roundNumbersInString(inputString) {
+        return inputString.replace(
+          /\[((\/)?[\d.]+)\]/g,
+          function (match, number) {
+            var isClosingTag = number[0] === "/";
+            number = isClosingTag ? number.substring(1) : number;
+            return (
+              "[" +
+              (isClosingTag ? "/" : "") +
+              roundToNearest(parseFloat(number), [0, 25, 50, 75, 100]) +
+              "]"
+            );
+          }
+        );
+      }
+
+      function groupTags(content, number) {
+        var openingTagRegex = new RegExp("\\[(" + number + ")\\]", "g");
+        var closingTagRegex = new RegExp("\\[\\/(" + number + ")\\]", "g");
+
+        var openingMatches = content.matchAll(openingTagRegex);
+        var closingMatches = content.matchAll(closingTagRegex);
+
+        var openingTagPositions = Array.from(
+          openingMatches,
+          (match) => match.index
+        );
+        var closingTagPositions = Array.from(
+          closingMatches,
+          (match) => match.index
+        );
+
+        var groupedContent = content;
+
+        if (openingTagPositions.length > 0 && closingTagPositions.length > 0) {
+          var firstOpeningTag = openingTagPositions[0];
+          var lastClosingTag =
+            closingTagPositions[closingTagPositions.length - 1] +
+            number.length +
+            4; // [/, number, ] = 4 characters
+
+          groupedContent =
+            content.substring(0, firstOpeningTag) +
+            content
+              .substring(firstOpeningTag, lastClosingTag)
+              .replace(/\[\/?\d+\]/g, "") +
+            content.substring(lastClosingTag);
+        }
+
+        return groupedContent;
+      }
+
+      function roundAndDisplayResult() {
+        var inputElement = document.getElementById("inputString");
+        var outputElement = document.getElementById("outputResult");
+
+        var inputString = inputElement.value;
+        var result = groupTags(roundNumbersInString(inputString));
+
+        outputElement.value = result;
+      }
+    </script>
+  </body>
+</html>
